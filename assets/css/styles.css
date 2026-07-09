@@ -165,7 +165,11 @@ section { position: relative; }
   transition: background var(--t), box-shadow var(--t), height var(--t);
 }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
-.site-header.scrolled { background: rgba(22,19,15,.86); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(255,255,255,.06); height: 72px; }
+/* No backdrop-filter here: it's on the same ancestor that contains the fixed
+   mobile .nav panel, and a filter on an ancestor breaks position:fixed's
+   containing block — the menu renders relative to this header (tiny box)
+   instead of the viewport, hence "cut off" once scrolled. Solid bg only. */
+.site-header.scrolled { background: rgba(22,19,15,.96); box-shadow: 0 1px 0 rgba(255,255,255,.06); height: 72px; }
 .brand { display: flex; align-items: center; gap: .62rem; z-index: 2; }
 .brand__mark { height: 44px; width: auto; transition: height var(--t); flex: none; }
 .site-header.scrolled .brand__mark { height: 38px; }

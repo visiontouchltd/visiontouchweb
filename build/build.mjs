@@ -105,24 +105,23 @@ function baCard(p) {
 
 /* "See us at work" — ongoing project photos */
 const WORK = [
-  ['work-01', 'Structural steelwork and support installation on a London renovation', 506, 900],
-  ['work-02', 'Structural work in progress on a residential project', 675, 900],
-  ['work-03', 'Load-bearing structural works during a property renovation', 675, 900],
-  ['work-04', 'Full house renovation in progress in Greater London', 675, 900],
-  ['work-05', 'Internal structural works and propping mid-build', 675, 900],
-  ['work-06', 'Courtyard renovation and groundworks in progress', 911, 900],
-  ['work-07', 'House renovation and strip-out in progress', 675, 900],
-  ['work-08', 'Steel beam and structural works during a refurbishment', 675, 900],
-  ['work-09', 'Entrance and hallway renovation in progress', 675, 900],
-  ['work-10', 'Courtyard and external works in progress', 899, 900],
-  ['work-11', 'Staircase renovation taking shape', 675, 900],
-  ['work-12', 'Structural building works on a London property', 720, 540],
-  ['work-13', 'Full property renovation mid-build', 506, 900],
-  ['work-14', 'Staircase construction and joinery in progress', 675, 900],
-  ['work-15', 'Entrance renovation and finishing works', 675, 900],
-  ['work-16', 'Exterior facade before rendering and renovation', 675, 900],
-  ['work-17', 'Kitchen renovation in progress', 675, 900],
-  ['work-18', 'Bespoke media wall installation', 675, 900],
+  ['work-01', 'Structural steelwork and support installation on a London renovation', 619, 1100],
+  ['work-02', 'Structural work in progress on a residential project', 825, 1100],
+  ['work-03', 'Load-bearing structural works during a property renovation', 825, 1100],
+  ['work-04', 'Full house renovation in progress in Greater London', 825, 1100],
+  ['work-05', 'Internal structural works and propping mid-build', 825, 1100],
+  ['work-06', 'Courtyard renovation and groundworks in progress', 1114, 1100],
+  ['work-07', 'House renovation and strip-out in progress', 825, 1100],
+  ['work-08', 'Steel beam and structural works during a refurbishment', 825, 1100],
+  ['work-09', 'Entrance and hallway renovation in progress', 825, 1100],
+  ['work-10', 'Courtyard and external works in progress', 1098, 1100],
+  ['work-11', 'Staircase renovation taking shape', 825, 1100],
+  ['work-13', 'Full property renovation mid-build', 619, 1100],
+  ['work-14', 'Staircase construction and joinery in progress', 825, 1100],
+  ['work-15', 'Entrance renovation and finishing works', 825, 1100],
+  ['work-16', 'Exterior facade before rendering and renovation', 825, 1100],
+  ['work-17', 'Kitchen renovation in progress', 825, 1100],
+  ['work-18', 'Bespoke media wall installation', 825, 1100],
 ];
 function workGallery() {
   const card = (base, alt) => `<figure class="cf__card"><picture><source srcset="assets/images/work/${base}.webp" type="image/webp"><img src="assets/images/work/${base}.jpg" alt="${esc(alt)}" loading="lazy" decoding="async" draggable="false"></picture></figure>`;
@@ -648,7 +647,6 @@ ${header('reviews')}
     <div class="container">
       <div class="center reveal" style="margin-bottom:2.6rem">${stars(5)}<p style="font-weight:700;color:var(--ink);margin-top:.5rem">Rated 5.0 from our clients across Greater London</p></div>
       <div class="grid grid-3">${REVIEWS.map((r) => `<div class="card reveal">${reviewCard(r)}</div>`).join('')}</div>
-      <p class="center" style="margin-top:2rem;color:var(--ink-faint);font-size:.9rem"><em>Demo reviews — genuine customer testimonials will be added here.</em></p>
     </div>
   </section>
   ${ctaBanner({ heading: 'Join our happy clients across Greater London' })}

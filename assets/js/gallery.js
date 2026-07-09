@@ -13,12 +13,17 @@
     var active = 0, timer = null;
 
     function layout() {
+      var n = cards.length;
       cards.forEach(function (card, i) {
+        // circular (shortest-path) offset so the strip wraps seamlessly — no empty
+        // space at either end, cards flow in from the opposite side continuously.
         var off = i - active;
+        if (off > n / 2) off -= n;
+        if (off < -n / 2) off += n;
         var abs = Math.abs(off);
-        var tx = off * 56;                          // % of card width
-        var scale = Math.max(0.6, 1 - abs * 0.15);
-        var op = abs === 0 ? 1 : abs === 1 ? 0.92 : abs === 2 ? 0.62 : abs === 3 ? 0.3 : 0;
+        var tx = off * 62;                          // % of card width
+        var scale = Math.max(0.55, 1 - abs * 0.16);
+        var op = abs === 0 ? 1 : abs === 1 ? 0.92 : abs === 2 ? 0.6 : abs === 3 ? 0.3 : 0;
         card.style.transform = 'translate(-50%,-50%) translateX(' + tx + '%) scale(' + scale + ')';
         card.style.opacity = op;
         card.style.zIndex = String(100 - abs);

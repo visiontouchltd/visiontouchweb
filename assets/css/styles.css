@@ -403,14 +403,15 @@ body.nav-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45
 .ba__label--b { left: .8rem; } .ba__label--a { right: .8rem; }
 
 /* ----------------------------------------------------------- "See us at work" coverflow */
-.work-section { overflow: hidden; }
+.work-section { overflow: hidden; padding-block: clamp(1.8rem, 1.3rem + 1.8vw, 3rem); }
+.work-section .section-head { margin-bottom: clamp(1.2rem, .9rem + 1vw, 1.8rem); }
 .cf { position: relative; }
 .cf__viewport { position: relative; overflow: hidden; }
-.cf__stage { position: relative; height: clamp(340px, 58vh, 540px); }
+.cf__stage { position: relative; height: clamp(240px, 40vh, 360px); }
 .cf__card {
   position: absolute; top: 50%; left: 50%;
-  width: clamp(230px, 27vw, 360px); height: clamp(310px, 52vh, 480px);
-  border-radius: 20px; overflow: hidden; background: var(--charcoal-2); box-shadow: var(--shadow);
+  width: clamp(180px, 19vw, 260px); height: clamp(216px, 36vh, 320px);
+  border-radius: 18px; overflow: hidden; background: var(--charcoal-2); box-shadow: var(--shadow);
   transition: transform .6s var(--ease), opacity .6s var(--ease), filter .6s var(--ease), box-shadow .6s var(--ease);
   will-change: transform, opacity; cursor: pointer;
 }
@@ -418,15 +419,15 @@ body.nav-open .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45
 .cf__card img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; user-select: none; }
 .cf__card:not(.is-active) { filter: saturate(.8) brightness(.82); }
 .cf__card.is-active { box-shadow: var(--shadow-lg); cursor: default; }
-.cf__controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.8rem; }
-.cf__arrow { width: 46px; height: 46px; border-radius: 50%; background: var(--white); border: 1px solid var(--line); display: grid; place-items: center; color: var(--ink); box-shadow: var(--shadow-sm); transition: var(--t-fast); flex: none; }
+.cf__controls { display: flex; align-items: center; justify-content: center; gap: .7rem; margin-top: 1.1rem; }
+.cf__arrow { width: 36px; height: 36px; border-radius: 50%; background: var(--white); border: 1px solid var(--line); display: grid; place-items: center; color: var(--ink); box-shadow: var(--shadow-sm); transition: var(--t-fast); flex: none; }
 .cf__arrow:hover { background: var(--accent-grad); color: #2a1602; border-color: transparent; }
-.cf__arrow svg { width: 1.2em; }
+.cf__arrow svg { width: 1.05em; }
 .cf__arrow[data-cf-prev] svg { transform: rotate(180deg); }
-.cf__dots { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; justify-content: center; max-width: min(60vw, 460px); }
-.cf__dot { width: 9px; height: 9px; border-radius: 999px; background: rgba(22,19,15,.2); border: 0; padding: 0; cursor: pointer; transition: width var(--t-fast), background var(--t-fast); }
+.cf__dots { display: flex; gap: .4rem; align-items: center; flex-wrap: wrap; justify-content: center; max-width: min(60vw, 400px); }
+.cf__dot { width: 7px; height: 7px; border-radius: 999px; background: rgba(22,19,15,.2); border: 0; padding: 0; cursor: pointer; transition: width var(--t-fast), background var(--t-fast); }
 .cf__dot:hover { background: rgba(22,19,15,.42); }
-.cf__dot.active { width: 26px; background: var(--accent-grad); }
+.cf__dot.active { width: 20px; background: var(--accent-grad); }
 .bg-dark .cf__dot { background: rgba(255,255,255,.25); }
 .bg-dark .cf__arrow { background: var(--charcoal-2); border-color: rgba(255,255,255,.12); color: #fff; }
 

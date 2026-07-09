@@ -105,14 +105,9 @@ function baCard(p) {
 
 /* "See us at work" — ongoing project photos */
 const WORK = [
-  ['work-01', 'Structural steelwork and support installation on a London renovation', 619, 1100],
-  ['work-02', 'Structural work in progress on a residential project', 825, 1100],
-  ['work-03', 'Load-bearing structural works during a property renovation', 825, 1100],
   ['work-04', 'Full house renovation in progress in Greater London', 825, 1100],
-  ['work-05', 'Internal structural works and propping mid-build', 825, 1100],
   ['work-06', 'Courtyard renovation and groundworks in progress', 1114, 1100],
   ['work-07', 'House renovation and strip-out in progress', 825, 1100],
-  ['work-08', 'Steel beam and structural works during a refurbishment', 825, 1100],
   ['work-09', 'Entrance and hallway renovation in progress', 825, 1100],
   ['work-10', 'Courtyard and external works in progress', 1098, 1100],
   ['work-11', 'Staircase renovation taking shape', 825, 1100],

@@ -11,7 +11,7 @@ const OUT = path.join(ROOT, 'publish');
 // Dev-only things we do NOT ship to the live site
 const EXCLUDE = new Set([
   'build', '.claude', 'node_modules', 'publish', '.git',
-  'README.md', 'package.json', 'package-lock.json',
+  'README.md', 'HANDOFF.md', 'package.json', 'package-lock.json',
   '.htaccess',           // Apache-only; Cloudflare uses _headers instead
   'quote-handler.php',   // PHP won't run on Pages; form uses Web3Forms
 ]);

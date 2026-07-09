@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block the mail handler from indexing
+Disallow: /quote-handler.php
+
+Sitemap: https://www.visiontouchltd.co.uk/sitemap.xml

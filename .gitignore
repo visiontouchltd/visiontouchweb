@@ -1,0 +1,13 @@
+# Dependencies & build output
+node_modules/
+publish/
+
+# Editor / local
+.claude/
+.DS_Store
+Thumbs.db
+*.log
+
+# Client deliverables, NOT part of the website (incl. the 140 MB demo video that
+# exceeds GitHub's file-size limit). These live locally / are shared separately.
+assets/presentation/

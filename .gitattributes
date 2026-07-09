@@ -1,0 +1,10 @@
+# Normalize line endings; treat binary media as binary
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.mp4 binary
+*.pdf binary
+*.pptx binary
+*.ico binary

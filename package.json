@@ -1,0 +1,18 @@
+{
+  "name": "vision-touch-website",
+  "version": "1.0.0",
+  "description": "Premium static website for Vision Touch Ltd — construction & property improvement, Greater London.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "cf-build": "node build/build.mjs && node build/publish.mjs",
+    "optimize:images": "node build/optimize-images.mjs",
+    "optimize:videos": "bash build/optimize-videos.sh",
+    "dev": "npx --yes http-server . -p 8123 -c-1",
+    "serve": "npx --yes http-server . -p 8123 -c-1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -6,9 +6,12 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
 
-# Long-cache fingerprint-free static assets (safe: content changes rarely; purge on redeploy)
+# Short cache + revalidate. Filenames here don't change between deploys (no
+# content hashing), so a long max-age would keep serving a stale file for up
+# to a year after every future edit — that's what caused the mobile-nav CSS
+# fix to not show up immediately. 1 hour keeps things fast without that risk.
 /assets/*
-  Cache-Control: public, max-age=31536000
+  Cache-Control: public, max-age=3600, must-revalidate
 
 /assets/videos/*
-  Cache-Control: public, max-age=31536000
+  Cache-Control: public, max-age=3600, must-revalidate

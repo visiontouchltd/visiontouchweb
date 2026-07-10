@@ -144,8 +144,8 @@
     panel.innerHTML =
       '<div class="vtc-head">' +
         '<span class="vtc-owl-wrap">' + OWL_SVG + '</span>' +
-        '<div class="vtc-head-txt"><strong>Vision Touch Assistant</strong>' +
-        '<span>Ask about quotes, services, areas, timelines or project planning.</span></div>' +
+        '<div class="vtc-head-txt"><strong>Ask Vivi The Owl</strong>' +
+        '<span>Anything about Vision Touch Ltd</span></div>' +
         '<div class="vtc-head-btns">' +
           '<button type="button" class="vtc-reset" aria-label="Clear chat" title="Clear chat">' + ICONS.reset + '</button>' +
           '<button type="button" class="vtc-close" aria-label="Close assistant" title="Close">' + ICONS.close + '</button>' +

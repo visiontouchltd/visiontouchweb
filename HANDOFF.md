@@ -113,6 +113,13 @@ Every page has: unique title/meta description, canonical URL, Open Graph + Twitt
 - Keyless Google Maps embed on the About page (no API key/billing needed) showing Greater London with the borough/area chip list
 - To recenter: get a fresh embed URL from Google Maps → Share → Embed a map, paste into `buildAbout()` in `build/build.mjs`
 
+### "Vivi" chatbot (added 2026-07-11)
+- Floating owl-mascot assistant on every page (stacked above the WhatsApp button). Custom SVG mascot, brand palette, lazy-loaded after page load — no performance impact.
+- **Works with zero paid setup:** local intent engine (`assets/js/chatbot-engine.js` + JSON data in `assets/data/`) answers service/area/quote/planning/process/trust/contact questions; unknown questions get a polite handover; built-in 9-step lead-capture flow submits to the same Web3Forms pipeline; email-draft generator for visitors who prefer to write in.
+- **Optional AI layer** via Cloudflare Pages Functions (`functions/api/chat.js`, env-gated — Workers AI binding or any OpenAI-compatible key). `functions/api/chat/lead.js` validates/forwards leads with optional Turnstile. Client falls back to direct Web3Forms if functions are unreachable.
+- Guardrails: never quotes prices, never gives planning/legal certainty, never promises availability; emergencies → "contact emergency services". Privacy note before contact details; history in sessionStorage only.
+- Docs: `docs/chatbot-setup.md` (env vars, AI enablement, upgrade path), `docs/chatbot-research-notes.md`, `docs/chatbot-asset-license.md`. Tests: `node build/test-chatbot-intents.mjs` (37 checks).
+
 ---
 
 ## 7. Deployment & hosting — how it all connects

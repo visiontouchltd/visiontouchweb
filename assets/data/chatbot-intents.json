@@ -1,0 +1,100 @@
+{
+  "serviceKeywords": {
+    "loft-conversions": ["loft", "attic", "dormer", "velux", "hip to gable", "hip-to-gable", "mansard", "roof room"],
+    "house-extensions": ["extension", "extend", "side return", "side-return", "wrap around", "wrap-around", "rear extension", "double storey", "double-storey", "kitchen diner"],
+    "property-renovations": ["renovation", "renovate", "refurbish", "refurbishment", "refurb", "modernise", "modernize", "makeover", "do up", "hmo", "buy to let", "buy-to-let"],
+    "carpentry-joinery": ["carpentry", "carpenter", "joinery", "joiner", "wardrobe", "wardrobes", "alcove", "media wall", "shelving", "staircase", "stairs", "bespoke storage", "skirting", "doors"],
+    "kitchen-installation": ["kitchen", "kitchens", "worktop", "worktops", "kitchen fitting", "kitchen fitter", "units", "splashback"],
+    "bathroom-installation": ["bathroom", "bathrooms", "en-suite", "ensuite", "en suite", "wet room", "wetroom", "shower", "cloakroom", "tiling bathroom"],
+    "structural-work": ["structural", "steel beam", "rsj", "load bearing", "load-bearing", "knock through", "knock-through", "underpinning", "open plan wall", "remove wall", "wall removal", "beam"],
+    "general-building-services": ["general building", "builder", "builders", "brickwork", "blockwork", "rendering", "plastering", "groundworks", "drainage", "repairs", "maintenance", "handyman"],
+    "roofing": ["roof", "roofing", "re-roof", "reroof", "roofer", "flat roof", "pitched roof", "leak", "guttering", "gutters", "fascia", "fascias", "soffit", "soffits", "leadwork", "chimney", "tiles slipped", "epdm", "felt"],
+    "flooring": ["floor", "flooring", "laminate", "lvt", "vinyl", "engineered wood", "wood floor", "floor tiling", "subfloor", "herringbone"],
+    "garage-conversions": ["garage", "garage conversion", "convert garage", "convert my garage", "garage into"]
+  },
+  "intents": [
+    {
+      "id": "greeting",
+      "keywords": ["hi", "hello", "hey", "good morning", "good afternoon", "good evening", "hiya", "yo"],
+      "maxWords": 6,
+      "reply": "Hello! 👋 I'm **Vivi**, the Vision Touch assistant. I can help with our services, the areas we cover, planning questions, or getting you a **free quote**. What are you planning?",
+      "suggest": ["Get a quote", "Our services", "Areas covered", "Planning & permissions"]
+    },
+    {
+      "id": "thanks",
+      "keywords": ["thanks", "thank you", "cheers", "great", "perfect", "brilliant", "lovely", "ok thanks", "thankyou"],
+      "maxWords": 6,
+      "reply": "You're very welcome! If anything else comes up — or you'd like a free, no-obligation quote — I'm right here. 🙂",
+      "suggest": ["Get a quote", "Speak to a human"]
+    },
+    {
+      "id": "quote",
+      "keywords": ["quote", "quotation", "estimate", "price", "prices", "cost", "costs", "how much", "pricing", "budget", "cheap", "expensive", "afford", "ballpark", "rough idea", "fee", "charge"],
+      "reply": "Costs depend on the property, access, specification, structural work and finish level, so we confirm pricing after understanding the project — quotes are **free and no-obligation**.\n\nI can take a few quick details right now and send them straight to the team. Ready?",
+      "suggest": ["Start my quote", "WhatsApp instead", "Not yet"],
+      "lead": true
+    },
+    {
+      "id": "areas",
+      "keywords": ["area", "areas", "cover", "coverage", "where do you work", "location", "borough", "postcode", "near me", "based", "come to", "travel", "serve", "operate"],
+      "reply": "",
+      "suggest": ["Get a quote", "Our services"]
+    },
+    {
+      "id": "planning",
+      "keywords": ["planning permission", "planning", "permitted development", "building regs", "building regulations", "building control", "party wall", "architect", "drawings", "structural calculations", "calcs", "approval", "council", "permission", "regulations", "listed building", "conservation area"],
+      "reply": "Planning and building-control requirements depend on the **property, borough and scope of work** — many projects fall under Permitted Development, but dormers, conservation areas, flats and larger works often need permission.\n\nVision Touch can guide you through drawings, building control and approvals where needed, but final requirements should be confirmed properly for your property. The easiest way is a free consultation — shall I set that up?",
+      "suggest": ["Get a quote", "Speak to a human", "Our process"]
+    },
+    {
+      "id": "timeline",
+      "keywords": ["how long", "timeline", "timescale", "duration", "weeks", "months", "take to", "finish by", "lead time", "when can you start", "start date", "availability"],
+      "reply": "",
+      "suggest": ["Get a quote", "Our process"]
+    },
+    {
+      "id": "process",
+      "keywords": ["process", "how does it work", "steps", "what happens", "site visit", "visit the site", "visit", "survey", "consultation", "first step", "how do we start", "procedure", "stages"],
+      "reply": "",
+      "suggest": ["Get a quote", "Areas covered"]
+    },
+    {
+      "id": "trust",
+      "keywords": ["reliable", "trust", "guarantee", "guaranteed", "warranty", "insured", "insurance", "reviews", "testimonials", "previous work", "past projects", "previous projects", "projects", "portfolio", "examples", "before and after", "references", "accredited", "certified", "qualifications", "gallery"],
+      "reply": "Fair question! Here's what you can check right now:\n- **[Projects](projects.html)** — real Vision Touch work across Greater London\n- **[Before & After gallery](before-after.html)** — drag the sliders to see transformations\n- **[Customer reviews](reviews.html)**\n\nOur workmanship is backed by aftercare, and installed products carry their manufacturer warranties — specifics are always confirmed in your written quote.",
+      "suggest": ["Get a quote", "Our process", "Speak to a human"]
+    },
+    {
+      "id": "investor",
+      "keywords": ["investor", "investment property", "landlord", "landlords", "developer", "developers", "development", "portfolio property", "rental", "tenant", "flip", "yield", "buy to let", "hmo"],
+      "reply": "Yes — alongside homeowners, Vision Touch regularly works with **property investors, landlords and developers**: refurbishments, buy-to-let and HMO upgrades, and development projects with clear costs and realistic schedules you can plan around.\n\nTell me a little about the property and I'll get the right details to the team.",
+      "suggest": ["Get a quote", "Property renovations", "Speak to a human"],
+      "lead": false
+    },
+    {
+      "id": "human",
+      "keywords": ["human", "person", "someone", "call me", "ring me", "phone me", "speak to", "talk to", "contact me", "real person", "agent", "advisor", "manager", "call back", "callback"],
+      "reply": "",
+      "suggest": ["WhatsApp us", "Request a callback", "Write an email"]
+    },
+    {
+      "id": "contact",
+      "keywords": ["email", "whatsapp", "contact", "phone number", "number", "reach you", "get in touch", "opening hours", "hours", "open", "office"],
+      "reply": "",
+      "suggest": ["Get a quote", "Speak to a human"]
+    },
+    {
+      "id": "emergency",
+      "keywords": ["emergency", "urgent", "collapsing", "collapse", "dangerous", "gas leak", "flooding", "flood", "burst pipe", "leaking badly", "unsafe"],
+      "reply": "⚠️ If something is **dangerous right now** — a gas leak, flooding, or risk of structural collapse — please contact emergency services or an emergency tradesperson immediately rather than waiting for a chat reply.\n\nFor urgent (but safe) repair work, the fastest way to reach the team is WhatsApp or the Call Us button.",
+      "suggest": ["WhatsApp us", "Speak to a human"],
+      "handover": true
+    },
+    {
+      "id": "services-general",
+      "keywords": ["services", "what do you do", "what do you offer", "what can you do", "help with", "type of work", "trades", "everything you do", "list of services"],
+      "reply": "",
+      "suggest": ["Get a quote", "Loft conversion", "House extension", "Renovation"]
+    }
+  ]
+}

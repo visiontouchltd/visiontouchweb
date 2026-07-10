@@ -247,5 +247,10 @@
 
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/hammer-cursor.js" defer></script>
+<!-- Vivi assistant: config + lazy loader (widget JS/CSS load after page load, on idle) -->
+<script>
+window.VT_CHAT={formKey:'bfc71cc9-2ef2-4d65-a6f3-56e8bd231e6b',email:'inquiries@visiontouchltd.co.uk',wa:'https://wa.me/447572222245?text=Hi%20Vision%20Touch%20Ltd%2C%20I%20would%20like%20to%20discuss%20a%20construction%20or%20renovation%20project%20and%20request%20a%20quote.',tel:'tel:+447572222245'};
+(function(){var go=function(){var l=document.createElement('link');l.rel='stylesheet';l.href='assets/css/chatbot.css';document.head.appendChild(l);var s=document.createElement('script');s.src='assets/js/chatbot.js';s.defer=true;document.body.appendChild(s)};window.addEventListener('load',function(){('requestIdleCallback'in window)?requestIdleCallback(go,{timeout:4000}):setTimeout(go,1800)})})();
+</script>
 </body>
 </html>

@@ -1,0 +1,129 @@
+{
+  "company": {
+    "name": "Vision Touch Ltd",
+    "overview": "Vision Touch Ltd is a UK-based construction and property improvement company delivering high-quality residential and development projects across Greater London. We specialise in loft conversions, renovations, carpentry, extensions and complete building services designed to increase property value and improve living spaces.",
+    "audience": ["Homeowners", "Property investors", "Property developers", "Contractors"],
+    "area": "Greater London",
+    "hours": "Monday–Friday 8:00am–6:00pm, Saturday 9:00am–4:00pm, closed Sunday"
+  },
+  "contact": {
+    "email": "inquiries@visiontouchltd.co.uk",
+    "whatsappNumber": "07572 222245 (WhatsApp)",
+    "quotePage": "request-a-quote.html",
+    "contactPage": "contact.html",
+    "note": "Phone number is not printed on the site — use the Call Us buttons, WhatsApp, email or the quote form."
+  },
+  "areas": {
+    "summary": "We cover the whole of Greater London.",
+    "named": ["Wembley", "Croydon", "Ealing", "Harrow", "Stratford", "Enfield", "Richmond", "Hounslow", "Camden", "Islington", "Greenwich", "Bromley", "Barnet", "Hammersmith", "Wandsworth", "Hackney"],
+    "outside": "If your property is just outside Greater London, send us the postcode — we'll confirm quickly whether we can help."
+  },
+  "process": [
+    { "step": "Consultation", "detail": "We listen to your goals, budget and timescales — by phone, WhatsApp or in person." },
+    { "step": "Site visit & review", "detail": "We assess the property, take measurements and discuss what's practical and what adds value." },
+    { "step": "Quote & planning", "detail": "A clear, itemised quote plus guidance on drawings, building control and approvals where needed." },
+    { "step": "Build & delivery", "detail": "Skilled trades, tidy sites and regular updates keep your project moving and on schedule." },
+    { "step": "Finish & handover", "detail": "Final inspection, snagging and a clean handover — with aftercare you can rely on." }
+  ],
+  "quotePolicy": "Quotes are free and no-obligation. Costs depend on the property, access, specification, structural work and finish level, so we confirm pricing after understanding the project and, where needed, reviewing the property. We never quote fixed prices in chat.",
+  "services": {
+    "loft-conversions": {
+      "label": "Loft Conversions",
+      "url": "loft-conversions.html",
+      "short": "Turn unused roof space into a beautiful bedroom, office or suite — adding space and value.",
+      "detail": "We design and build dormer, hip-to-gable, Velux and L-shaped conversions, including en-suites, staircases, structural steels, insulation and building-control sign-off.",
+      "timeline": "Most conversions take around 6–10 weeks on site depending on type and complexity."
+    },
+    "house-extensions": {
+      "label": "House Extensions",
+      "url": "house-extensions.html",
+      "short": "Single, double-storey, side-return and wrap-around extensions that transform how you live.",
+      "detail": "Rear, side-return, wrap-around and double-storey extensions — open-plan kitchen-diners, bi-fold doors, rooflights, foundations and structural steel, managed end to end.",
+      "timeline": "A typical single-storey extension takes around 10–16 weeks."
+    },
+    "property-renovations": {
+      "label": "Property Renovations",
+      "url": "property-renovations.html",
+      "short": "Full and partial refurbishments that modernise tired properties and maximise their value.",
+      "detail": "Full and partial refurbishments, buy-to-let and HMO upgrades — plastering, electrics, plumbing, joinery, tiling and decorating coordinated under one team.",
+      "timeline": "Depends on scope — we agree a clear programme before work begins."
+    },
+    "carpentry-joinery": {
+      "label": "Carpentry & Joinery",
+      "url": "carpentry-joinery.html",
+      "short": "Skilled bespoke carpentry — from structural first-fix to flawless fitted joinery.",
+      "detail": "First and second fix, staircases, doors, skirting, plus made-to-measure wardrobes, alcove units, media walls and bespoke storage.",
+      "timeline": "Varies by piece — fitted wardrobes and media walls are usually quick installs."
+    },
+    "kitchen-installation": {
+      "label": "Kitchen Installation",
+      "url": "kitchen-installation.html",
+      "short": "Beautiful, functional kitchens fitted to the highest standard — the heart of the home.",
+      "detail": "Full kitchen fitting — units, worktops, splashbacks, plumbing, electrics, appliances, tiling and flooring. We can fit a kitchen you've bought or advise on supply.",
+      "timeline": "Most installations take 1–3 weeks depending on size and layout changes."
+    },
+    "bathroom-installation": {
+      "label": "Bathroom Installation",
+      "url": "bathroom-installation.html",
+      "short": "Spa-quality bathrooms and en-suites — fully fitted, waterproofed and finished.",
+      "detail": "Bathrooms, en-suites, cloakrooms and wet rooms — full waterproofing/tanking, plumbing, ventilation and precision tiling.",
+      "timeline": "A typical bathroom takes around 1–2 weeks."
+    },
+    "structural-work": {
+      "label": "Structural Work",
+      "url": "structural-work.html",
+      "short": "Steel beams, load-bearing walls and underpinning — done safely and signed off.",
+      "detail": "Steel beam (RSJ) installation, load-bearing wall removal, underpinning and structural alterations — always to engineer's calculations with building-control sign-off.",
+      "timeline": "Depends on the works — we programme this carefully with proper temporary supports."
+    },
+    "general-building-services": {
+      "label": "General Building Services",
+      "url": "general-building-services.html",
+      "short": "A single, reliable team for building works of every size — managed end to end.",
+      "detail": "Brickwork, blockwork, rendering, plastering, groundworks, drainage, repairs and full project management — one accountable team for every trade.",
+      "timeline": "From small repairs to full builds — timescales agreed up front."
+    },
+    "roofing": {
+      "label": "Roofing",
+      "url": "roofing.html",
+      "short": "New roofs, re-roofs and repairs — weatherproofing your most important asset.",
+      "detail": "Pitched and flat roofs, full re-roofing, EPDM flat-roof systems, leak repairs, leadwork, chimneys, guttering, fascias and soffits.",
+      "timeline": "Repairs are usually fast; full re-roofs are programmed after inspection."
+    },
+    "flooring": {
+      "label": "Flooring",
+      "url": "flooring.html",
+      "short": "Engineered wood, laminate, LVT and tiling — beautifully level, perfectly finished floors.",
+      "detail": "Engineered and solid wood, laminate, luxury vinyl (LVT) and floor tiling — with proper subfloor preparation, levelling and moisture control.",
+      "timeline": "Most rooms are quick once the subfloor is prepared."
+    },
+    "garage-conversions": {
+      "label": "Garage Conversions",
+      "url": "garage-conversions.html",
+      "short": "Turn an underused garage into a warm, usable room — office, gym, snug or bedroom.",
+      "detail": "Insulation, damp-proofing, heating, new walls/windows/doors, electrics and finishing — a genuine extra room that blends with your home.",
+      "timeline": "Most single-garage conversions take around 2–4 weeks."
+    }
+  },
+  "faqs": [
+    { "q": "Do you offer free quotes?", "a": "Yes — quotes are free and no-obligation. Tell us about your project by WhatsApp, email or the quote form and we'll come back with clear, itemised pricing." },
+    { "q": "Do you handle planning and building regulations?", "a": "We guide you through planning and building control where required and coordinate the necessary drawings, calculations and approvals. Final requirements depend on your property and borough." },
+    { "q": "Do you work with investors and developers?", "a": "Yes — alongside homeowners we deliver renovation and development projects for investors, landlords and developers, with clear costs and realistic schedules." },
+    { "q": "Is your work guaranteed?", "a": "Our workmanship is backed by aftercare, and installed products carry their manufacturer warranties. Specifics are confirmed in your quote." },
+    { "q": "Can we stay in the house during the build?", "a": "In most cases yes — we plan the works to keep disruption to a minimum and keep the site safe and tidy." },
+    { "q": "Do I need planning permission?", "a": "It depends on the property, borough and scope of work. Many projects fall under Permitted Development, but dormers, conservation areas, flats and larger works often need permission. We advise on exactly what your project needs at the quote stage." },
+    { "q": "Can I see previous work?", "a": "Yes — see the Projects page and the Before & After gallery for real Vision Touch projects, plus customer reviews." }
+  ],
+  "guardrails": {
+    "noPrices": "Never state or estimate prices/figures. Costs depend on the property, access, specification, structural work and finish level — always route to a free quote.",
+    "noPlanningCertainty": "Never promise planning permission outcomes or give legal/structural advice as certainty. Requirements vary by property and borough.",
+    "noAvailability": "Never promise start dates or team availability.",
+    "noInvented": "Never invent certifications, insurance details, guarantees or timelines beyond those listed here.",
+    "emergencies": "Not an emergency service — if something is dangerous (gas leak, structural collapse risk, flooding), advise contacting emergency services or an emergency tradesperson immediately."
+  },
+  "handover": {
+    "unknown": "I'm not fully sure about that from the information on our website, and I'd rather not guess. The best next step is to contact the team directly so they can confirm properly — I can help you write a quick enquiry now, or you can WhatsApp us for the fastest reply.",
+    "human": "Of course — the quickest ways to reach a human are WhatsApp or the Call Us button (Mon–Sat). You can also email inquiries@visiontouchltd.co.uk, or I can take a few details now and pass them to the team."
+  },
+  "privacyNote": "We'll only use these details to respond to your enquiry."
+}

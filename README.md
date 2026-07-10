@@ -193,6 +193,7 @@ reduced-motion support.
 
 ## 11. Customising / disabling features
 
+- **Chatbot ("Vivi"):** works out of the box with no AI key (local intent engine + lead capture + email draft). Answers/wording live in `assets/data/chatbot-knowledge.json`. Optional AI, env vars, tests and upgrade path: see `docs/chatbot-setup.md`.
 - **Hammer cursor:** set `ENABLE_HAMMER = false` at the top of `assets/js/hammer-cursor.js`.
 - **Animated 3D logo:** set `logoMotion: false` in `build/site.mjs` and re-run `node build/build.mjs` to revert to a completely static logo. (The animation — a 3D entrance, a gentle idle float/tilt, and a hover barrel-roll — is pure CSS; it auto-disables for visitors who prefer reduced motion.)
 - **WhatsApp default message:** edit `waMessage` in `build/site.mjs`.

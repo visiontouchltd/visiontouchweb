@@ -238,6 +238,11 @@ export function footer(scripts = []) {
 
 ${scriptTags}
 <script src="assets/js/hammer-cursor.js" defer></script>
+<!-- Vivi assistant: config + lazy loader (widget JS/CSS load after page load, on idle) -->
+<script>
+window.VT_CHAT={formKey:'${SITE.web3formsKey}',email:'${SITE.email}',wa:'${SITE.waLink}',tel:'${SITE.telLink}'};
+(function(){var go=function(){var l=document.createElement('link');l.rel='stylesheet';l.href='assets/css/chatbot.css';document.head.appendChild(l);var s=document.createElement('script');s.src='assets/js/chatbot.js';s.defer=true;document.body.appendChild(s)};window.addEventListener('load',function(){('requestIdleCallback'in window)?requestIdleCallback(go,{timeout:4000}):setTimeout(go,1800)})})();
+</script>
 </body>
 </html>`;
 }

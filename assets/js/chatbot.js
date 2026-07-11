@@ -25,6 +25,18 @@
   var messages = [];                                // {role:'bot'|'user'|'note', html/text}
   var lead = null;                                  // active lead-capture state
   var loading = false, openState = false;
+  // Conversation context: remembers the topic so follow-ups feel natural
+  // ("how long does it take?" after talking lofts → loft timeline) and so a
+  // "yes" after a quote offer starts the pre-filled lead flow.
+  var ctx = { service: null, area: null, expect: null, preset: null };
+  var SLUG2TYPE = {
+    'loft-conversions': 'Loft conversion', 'house-extensions': 'House extension',
+    'property-renovations': 'Renovation', 'carpentry-joinery': 'Carpentry & joinery',
+    'kitchen-installation': 'Kitchen', 'bathroom-installation': 'Bathroom',
+    'structural-work': 'Structural work', 'general-building-services': 'General building work',
+    'roofing': 'Roofing', 'flooring': 'Flooring', 'garage-conversions': 'Garage conversion'
+  };
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
   /* ---------------------------------------------------------------- utils */
   function el(tag, cls, html) {
@@ -267,8 +279,9 @@
   /* --------------------------------------------------------- chip router */
   function onChip(label) {
     var special = {
-      'Get a quote': function () { addUser(label); startLead('quote'); },
-      'Start my quote': function () { addUser(label); startLead('quote'); },
+      'Get a quote': function () { addUser(label); startLead('quote', ctx.preset); ctx.preset = null; },
+      'Start my quote': function () { addUser(label); startLead('quote', ctx.preset); ctx.preset = null; },
+      'Tell me more': function () { addUser(label); if (ctx.service) replyService(ctx.service); else replyAllServices(); },
       'Request a callback': function () { addUser(label); startLead('quote', { preferred_contact: 'Phone' }); },
       'Write an email': function () { addUser(label); startLead('email'); },
       'Email instead': function () { emailFromLead(); },
@@ -309,18 +322,24 @@
     var det = engine.detect(text);
     var conf = det.confidence;
 
+    // remember topic for natural follow-ups
+    if (det.service) ctx.service = det.service;
+    if (det.area) ctx.area = det.area;
+
     if (det.intent === 'fallback' || conf < 0.35) { lowConfidence(text); return; }
     typing(false);
 
     switch (det.intent) {
-      case 'service': replyService(det.service); break;
+      case 'service': replyServiceSmart(det); break;
       case 'areas': replyAreas(det.area); break;
-      case 'quote': replyQuote(det.service); break;
-      case 'timeline': replyTimeline(det.service); break;
+      case 'quote': replyQuote(det.service || ctx.service); break;
+      case 'timeline': replyTimeline(det.service || ctx.service); break;
       case 'process': replyProcess(); break;
       case 'contact': replyContact(); break;
       case 'human': replyHuman(); break;
       case 'services-general': replyAllServices(); break;
+      case 'affirm': replyAffirm(); break;
+      case 'negate': replyNegate(); break;
       default:
         if (det.def && det.def.reply) {
           addBot(det.def.reply);
@@ -329,18 +348,64 @@
     }
   }
 
+  /* "yes"/"no" only make sense against what was just offered */
+  function replyAffirm() {
+    if (ctx.expect === 'quote-offer') {
+      var preset = ctx.preset; ctx.expect = null; ctx.preset = null;
+      startLead('quote', preset);
+      return;
+    }
+    addBot('Great! 🙂 Tell me a little about your project — the service, the area, or what you’d like done — and I’ll point you the right way.');
+    showChips(defaultChips());
+  }
+  function replyNegate() {
+    ctx.expect = null; ctx.preset = null;
+    addBot('No problem at all — no pressure here. Feel free to browse **[our services](services.html)** or the **[before & after gallery](before-after.html)**, and I’m around if a question comes up.');
+    showChips(defaultChips());
+  }
+
+  /* Conversational service reply: acknowledges the project + area in the
+     visitor's own terms and offers a pre-filled quote. */
+  function replyServiceSmart(det) {
+    var s = K.services[det.service];
+    if (!s) { lowConfidence(''); return; }
+    var type = SLUG2TYPE[det.service] || s.label;
+    var isProject = det.projectIntent || det.area;
+
+    if (isProject) {
+      var opener = pick(['Lovely —', 'Great choice —', 'Nice —', 'Perfect —']);
+      var msg = opener + ' a **' + type.toLowerCase() + '**' + (det.area ? ' in **' + det.area + '**' : '') + ' is exactly what we do.';
+      if (det.area) msg += ' And yes, ' + det.area + ' is well within our Greater London coverage.';
+      msg += '\n\n' + s.short + ' ' + s.detail;
+      msg += '\n\nWant me to get you a **free, no-obligation quote**? I’ll pre-fill the project type' + (det.area ? ' and location' : '') + ' so it only takes a minute.';
+      addBot(msg);
+      ctx.expect = 'quote-offer';
+      ctx.preset = { project_type: type };
+      if (det.area) ctx.preset.location = det.area;
+      showChips(['Get a quote', 'Tell me more', 'How long does it take?', 'Not yet']);
+    } else {
+      replyService(det.service);
+    }
+  }
+
   function replyService(slug) {
     var s = K.services[slug];
     if (!s) { lowConfidence(''); return; }
     addBot('**Yes — ' + s.label.toLowerCase() + ' is one of our core services.** ' + s.short + '\n\n' + s.detail +
       '\n\nYou can read more on the **[' + s.label + ' page](' + s.url + ')**, or I can get you a free quote right now.');
+    ctx.expect = 'quote-offer';
+    ctx.preset = { project_type: SLUG2TYPE[slug] || s.label };
     showChips(['Get a quote', 'How long does it take?', 'Areas covered', 'Speak to a human']);
   }
 
   function replyAreas(area) {
     var named = K.areas.named;
     if (area && area !== 'London' && area !== 'Greater London') {
-      addBot('**Yes — we cover ' + area + '.** ' + K.areas.summary + ' That includes ' + named.slice(0, 6).join(', ') + ' and the surrounding boroughs.\n\nWould you like a free quote for a project in ' + area + '?');
+      var tie = ctx.service && K.services[ctx.service] ? ' A ' + (SLUG2TYPE[ctx.service] || '').toLowerCase() + ' in ' + area + ' would be no problem at all.' : '';
+      addBot('**Yes — we cover ' + area + '.** ' + K.areas.summary + ' That includes ' + named.slice(0, 6).join(', ') + ' and the surrounding boroughs.' + tie + '\n\nWould you like a free quote for a project in ' + area + '?');
+      ctx.expect = 'quote-offer';
+      ctx.preset = { location: area };
+      if (ctx.service) ctx.preset.project_type = SLUG2TYPE[ctx.service];
     } else {
       addBot('**We cover the whole of Greater London** — including ' + named.slice(0, 8).join(', ') + ' and all surrounding boroughs.\n\n' + K.areas.outside);
     }
@@ -350,6 +415,10 @@
   function replyQuote(slug) {
     var lead_in = slug && K.services[slug] ? 'For **' + K.services[slug].label.toLowerCase() + '**, costs' : 'Costs';
     addBot(lead_in + ' depend on the property, access, specification, structural work and finish level — so we confirm pricing after understanding the project. Quotes are **free and no-obligation**.\n\nI can take a few quick details now and send them straight to the team. Ready?');
+    ctx.expect = 'quote-offer';
+    ctx.preset = {};
+    if (slug && SLUG2TYPE[slug]) ctx.preset.project_type = SLUG2TYPE[slug];
+    if (ctx.area) ctx.preset.location = ctx.area;
     showChips(['Start my quote', 'WhatsApp instead', 'Not yet']);
   }
 
@@ -388,8 +457,45 @@
     showChips(['Get a quote', 'Areas covered', 'Speak to a human']);
   }
 
-  /* -------------------------------------------- low confidence → AI → fb */
+  /* ------------------------------- low confidence → retrieval → AI → fb */
+  var corpus = null;
+  function buildCorpus() {
+    if (corpus) return corpus;
+    corpus = [];
+    (K.faqs || []).forEach(function (f, i) { corpus.push({ id: 'faq:' + i, text: f.q + ' ' + f.a }); });
+    Object.keys(K.services).forEach(function (slug) {
+      var s = K.services[slug];
+      corpus.push({ id: 'svc:' + slug, text: s.label + ' ' + s.short + ' ' + s.detail });
+    });
+    corpus.push({ id: 'areas', text: 'areas covered coverage boroughs postcode where work travel ' + K.areas.named.join(' ') });
+    corpus.push({ id: 'process', text: 'process steps stages how it works site visit consultation quote handover ' + K.process.map(function (p) { return p.step + ' ' + p.detail; }).join(' ') });
+    corpus.push({ id: 'quote', text: 'quote price cost estimate pricing budget free no obligation ' + K.quotePolicy });
+    return corpus;
+  }
+
   function lowConfidence(text) {
+    // 1) fuzzy retrieval over the site's own knowledge — answer from content
+    var ranked = engine.rank ? engine.rank(text, buildCorpus()) : [];
+    if (ranked.length && ranked[0].score >= 2) {
+      typing(false);
+      var hit = ranked[0].id;
+      if (hit.indexOf('svc:') === 0) {
+        var slug = hit.slice(4);
+        ctx.service = slug;
+        replyServiceSmart({ service: slug, area: null, projectIntent: true });
+        return;
+      }
+      if (hit.indexOf('faq:') === 0) {
+        var f = K.faqs[parseInt(hit.slice(4), 10)];
+        addBot(f.a + '\n\nAnything else I can help with?');
+        showChips(defaultChips());
+        return;
+      }
+      if (hit === 'areas') { replyAreas(null); return; }
+      if (hit === 'process') { replyProcess(); return; }
+      if (hit === 'quote') { replyQuote(ctx.service); return; }
+    }
+    // 2) optional server-side AI, 3) honest handover
     tryAI(text).then(function (res) {
       typing(false);
       if (res && res.reply) {
@@ -438,8 +544,14 @@
 
   function startLead(mode, preset) {
     lead = { mode: mode || 'quote', step: 0, data: preset ? Object.assign({}, preset) : {} };
+    ctx.expect = null;
     if (lead.mode === 'email') {
       addBot('Happy to help you write an enquiry email — I’ll ask a few quick questions, then draft it for you to copy or send.');
+    } else if (lead.data.project_type || lead.data.location) {
+      var got = [];
+      if (lead.data.project_type) got.push('**' + lead.data.project_type + '**');
+      if (lead.data.location) got.push('**' + lead.data.location + '**');
+      addBot('Perfect — I’ve already noted ' + got.join(' in ') + ', so this will be quick.');
     }
     askLeadStep();
   }

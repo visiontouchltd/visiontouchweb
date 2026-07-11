@@ -1,24 +1,52 @@
 {
   "serviceKeywords": {
-    "loft-conversions": ["loft", "attic", "dormer", "velux", "hip to gable", "hip-to-gable", "mansard", "roof room"],
-    "house-extensions": ["extension", "extend", "side return", "side-return", "wrap around", "wrap-around", "rear extension", "double storey", "double-storey", "kitchen diner"],
-    "property-renovations": ["renovation", "renovate", "refurbish", "refurbishment", "refurb", "modernise", "modernize", "makeover", "do up", "hmo", "buy to let", "buy-to-let"],
-    "carpentry-joinery": ["carpentry", "carpenter", "joinery", "joiner", "wardrobe", "wardrobes", "alcove", "media wall", "shelving", "staircase", "stairs", "bespoke storage", "skirting", "doors"],
-    "kitchen-installation": ["kitchen", "kitchens", "worktop", "worktops", "kitchen fitting", "kitchen fitter", "units", "splashback"],
-    "bathroom-installation": ["bathroom", "bathrooms", "en-suite", "ensuite", "en suite", "wet room", "wetroom", "shower", "cloakroom", "tiling bathroom"],
-    "structural-work": ["structural", "steel beam", "rsj", "load bearing", "load-bearing", "knock through", "knock-through", "underpinning", "open plan wall", "remove wall", "wall removal", "beam"],
-    "general-building-services": ["general building", "builder", "builders", "brickwork", "blockwork", "rendering", "plastering", "groundworks", "drainage", "repairs", "maintenance", "handyman"],
-    "roofing": ["roof", "roofing", "re-roof", "reroof", "roofer", "flat roof", "pitched roof", "leak", "guttering", "gutters", "fascia", "fascias", "soffit", "soffits", "leadwork", "chimney", "tiles slipped", "epdm", "felt"],
-    "flooring": ["floor", "flooring", "laminate", "lvt", "vinyl", "engineered wood", "wood floor", "floor tiling", "subfloor", "herringbone"],
-    "garage-conversions": ["garage", "garage conversion", "convert garage", "convert my garage", "garage into"]
+    "loft-conversions": ["loft", "attic", "dormer", "velux", "hip to gable", "hip-to-gable", "mansard", "roof room", "loft room", "loft space", "roof space", "convert loft", "convert the loft", "convert my loft", "attic room"],
+    "house-extensions": ["extension", "extend", "extending", "side return", "side-return", "wrap around", "wrap-around", "rear extension", "double storey", "double-storey", "kitchen diner", "extra room", "more space"],
+    "property-renovations": ["renovation", "renovate", "renovating", "refurbish", "refurbishment", "refurbishing", "refurb", "remodel", "remodelling", "revamp", "redo", "restore", "modernise", "modernize", "modernising", "makeover", "do up", "transform", "home improvement", "hmo", "buy to let", "buy-to-let", "full house", "whole house"],
+    "carpentry-joinery": ["carpentry", "carpenter", "joinery", "joiner", "wardrobe", "wardrobes", "alcove", "media wall", "shelving", "staircase", "stairs", "bespoke storage", "skirting", "doors", "fitted furniture", "built in storage"],
+    "kitchen-installation": ["kitchen", "kitchens", "worktop", "worktops", "kitchen fitting", "kitchen fitter", "new kitchen", "kitchen refit", "kitchen makeover", "units", "splashback"],
+    "bathroom-installation": ["bathroom", "bathrooms", "en-suite", "ensuite", "en suite", "wet room", "wetroom", "shower", "cloakroom", "new bathroom", "bathroom refit", "tiling bathroom", "toilet"],
+    "structural-work": ["structural", "steel beam", "rsj", "load bearing", "load-bearing", "knock through", "knock-through", "underpinning", "open plan wall", "remove wall", "wall removal", "knock down wall", "beam"],
+    "general-building-services": ["general building", "builder", "builders", "building work", "brickwork", "blockwork", "rendering", "plastering", "groundworks", "drainage", "repairs", "repair", "maintenance", "handyman", "odd jobs"],
+    "roofing": ["roof", "roofing", "re-roof", "reroof", "roofer", "flat roof", "pitched roof", "leak", "leaking roof", "guttering", "gutters", "fascia", "fascias", "soffit", "soffits", "leadwork", "chimney", "tiles slipped", "epdm", "felt"],
+    "flooring": ["floor", "floors", "flooring", "laminate", "lvt", "vinyl", "engineered wood", "wood floor", "floor tiling", "subfloor", "herringbone", "new floor"],
+    "garage-conversions": ["garage", "garage conversion", "convert garage", "convert my garage", "garage into", "garage room"]
   },
+  "projectVerbs": ["want", "need", "would like", "looking for", "looking to", "planning", "plan to", "thinking of", "thinking about", "interested in", "hoping to", "going to", "get done", "repurpose", "redesign", "convert", "upgrade", "improve"],
   "intents": [
     {
       "id": "greeting",
-      "keywords": ["hi", "hello", "hey", "good morning", "good afternoon", "good evening", "hiya", "yo"],
+      "keywords": ["hi", "hello", "hey", "good morning", "good afternoon", "good evening", "hiya", "yo", "how are you"],
       "maxWords": 6,
       "reply": "Hello! 👋 I'm **Vivi**, the Vision Touch assistant. I can help with our services, the areas we cover, planning questions, or getting you a **free quote**. What are you planning?",
       "suggest": ["Get a quote", "Our services", "Areas covered", "Planning & permissions"]
+    },
+    {
+      "id": "affirm",
+      "keywords": ["yes", "yeah", "yep", "yup", "sure", "ok", "okay", "alright", "go ahead", "lets do it", "sounds good", "yes please", "please do", "go on", "why not"],
+      "maxWords": 5,
+      "reply": "",
+      "suggest": []
+    },
+    {
+      "id": "negate",
+      "keywords": ["no", "nope", "nah", "not now", "not yet", "later", "maybe later", "no thanks", "no thank you"],
+      "maxWords": 5,
+      "reply": "",
+      "suggest": []
+    },
+    {
+      "id": "identity",
+      "keywords": ["who are you", "your name", "are you a bot", "are you real", "are you human", "are you ai", "are you a robot", "what are you", "whats vivi"],
+      "reply": "I'm **Vivi** 🦉 — Vision Touch Ltd's very own owl assistant. I know the company's services, coverage and process inside out, and I can get a real human involved whenever you like. What can I help you with?",
+      "suggest": ["Our services", "Get a quote", "Speak to a human"]
+    },
+    {
+      "id": "bye",
+      "keywords": ["bye", "goodbye", "see you", "take care", "good night", "goodnight", "cya"],
+      "maxWords": 5,
+      "reply": "Thanks for stopping by! 🦉 Whenever you're ready to plan your project, I'm right here — or you can WhatsApp the team any time. Take care!",
+      "suggest": ["Get a quote", "WhatsApp us"]
     },
     {
       "id": "thanks",

@@ -73,9 +73,25 @@ from the **repo root** automatically (it is intentionally excluded from `publish
 - Input length caps client + server, crude abuse blocklist, best-effort rate limiting.
 - Guardrails in both the rules layer and the AI system prompt: no prices, no planning/legal certainty, no availability promises, emergency messages get a "contact emergency services" response.
 
+## Conversation engine v2 (2026-07-11)
+Layer 1 was upgraded from plain keyword matching to a small conversational engine:
+- **Typo tolerance** — bounded Levenshtein fuzzy matching + light stemming ("rennovation",
+  "kitchin", "extention", "illford" all resolve). Fuzzy applies to single keywords only;
+  phrases and the emergency intent stay exact-match to avoid false positives.
+- **~140 recognised areas** — all Greater London districts (Ilford, Romford, Walthamstow…)
+  plus postcode-prefix detection (IG1, HA1, SE15 …).
+- **Conversation context** — remembers the current service/area, so "how long does it take?"
+  after discussing lofts gives the loft timeline, and a plain "yes" after a quote offer starts
+  the lead flow with **project type + location pre-filled**.
+- **Project-intent detection** — "I want/need/planning a renovation in Ilford" gets a warm,
+  personalised acknowledgement and a pre-filled quote offer instead of a generic answer.
+- **Retrieval fallback** — before saying "I'm not sure", the engine fuzzy-searches the whole
+  knowledge base (FAQs, services, process, quote policy) and answers from the best match.
+- New small-talk intents: yes/no handling, identity ("are you a bot?"), goodbyes.
+
 ## Known limitations
 - Rate limiting is per-isolate (resets on cold start) — fine for a brochure site; use KV/Durable Objects for hard limits.
-- Layer-1 context is per-message (a follow-up like "how long does it take?" after discussing lofts gives the general timeline answer, not loft-specific — the AI layer handles this when enabled).
+- Context memory is session-local and single-topic (last service + area) — deeper multi-turn reasoning needs the AI layer.
 - Turnstile verification is supported server-side but the widget doesn't render the Turnstile challenge yet.
 
 ## Upgrade path

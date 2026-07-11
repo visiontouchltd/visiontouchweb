@@ -50,6 +50,20 @@ const cases = [
   ['thanks', 'thanks'],
   ['tell me about quantum physics', 'fallback'],
   ['what is the meaning of life', 'fallback'],
+
+  // v2: typo tolerance, extended areas, postcodes, synonyms, conversation
+  ['i want a home rennovation at illford', 'service', 'property-renovations', 'Ilford'],
+  ['I want to repurpose or redesign my loft, can you help me with that?', 'service', 'loft-conversions'],
+  ['can you remodel my kitchin', 'service', 'kitchen-installation'],
+  ['do you cover IG1?', 'areas', null, 'IG1'],
+  ['roofer needed in romford', 'service', 'roofing', 'Romford'],
+  ['we are in walthamstow, do you come out here?', 'areas', null, 'Walthamstow'],
+  ['need a new bathrom fitted', 'service', 'bathroom-installation'],
+  ['thinking about an extention on the back of the house', 'service', 'house-extensions'],
+  ['yes please', 'affirm'],
+  ['not now', 'negate'],
+  ['are you a bot', 'identity'],
+  ['bye', 'bye'],
 ];
 
 let pass = 0, fail = 0;
@@ -72,5 +86,21 @@ const high = engine.detect('do I need planning permission for a loft conversion'
 if (low > 0.2) { fail++; console.error(`✗ fallback confidence too high: ${low}`); }
 if (high < 0.5) { fail++; console.error(`✗ strong-match confidence too low: ${high}`); }
 
-console.log(`\n${pass + (fail === 0 ? 2 : 0)}/${cases.length + 2} checks — ${fail === 0 ? 'ALL PASS ✓' : fail + ' FAILED'}`);
+// projectIntent flag ("I want/need…" statements should offer a pre-filled quote)
+const pi = engine.detect('i want a home rennovation at illford');
+if (!pi.projectIntent) { fail++; console.error('✗ projectIntent not detected for "i want a home rennovation…"'); }
+
+// rank(): knowledge retrieval fallback must surface the right entry
+const corpus = [
+  { id: 'faq:guarantee', text: 'Is your work guaranteed? Our workmanship is backed by aftercare and installed products carry manufacturer warranties.' },
+  { id: 'svc:kitchen-installation', text: 'Kitchen Installation Beautiful functional kitchens fitted to the highest standard units worktops splashbacks plumbing' },
+  { id: 'process', text: 'process steps stages how it works site visit consultation quote handover' },
+];
+const r1 = engine.rank('do you offer any warranty on your workmanship', corpus);
+if (!r1.length || r1[0].id !== 'faq:guarantee') { fail++; console.error(`✗ rank() missed guarantee FAQ: ${JSON.stringify(r1[0] || null)}`); }
+const r2 = engine.rank('who fits the worktops and splashbacks', corpus);
+if (!r2.length || r2[0].id !== 'svc:kitchen-installation') { fail++; console.error(`✗ rank() missed kitchen entry: ${JSON.stringify(r2[0] || null)}`); }
+
+const extra = 5; // confidence ×2, projectIntent, rank ×2
+console.log(`\n${pass + (fail === 0 ? extra : 0)}/${cases.length + extra} checks — ${fail === 0 ? 'ALL PASS ✓' : fail + ' FAILED'}`);
 process.exit(fail === 0 ? 0 : 1);

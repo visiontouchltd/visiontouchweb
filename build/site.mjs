@@ -13,6 +13,14 @@ export const SITE = {
   phoneIntl: '447572222245',
   email: 'inquiries@visiontouchltd.co.uk',
   area: 'Greater London',
+  address: {
+    line1: '82 Chatsworth Road',
+    line2: 'Lower Clapton',
+    city: 'London',
+    postcode: 'E5 0LS',
+    country: 'GB',
+    full: '82 Chatsworth Road, Lower Clapton, London, E5 0LS',
+  },
   // Web3Forms access key — paste the key emailed to inquiries@visiontouchltd.co.uk (see README §7).
   // Until this is set, the form shows a friendly "email us directly" message instead of sending.
   web3formsKey: 'bfc71cc9-2ef2-4d65-a6f3-56e8bd231e6b',
@@ -208,7 +216,7 @@ export function footer(scripts = []) {
           <li>${ICON.phone}<a href="${SITE.telLink}">Call us</a></li>
           <li>${ICON.whatsapp}<a href="${SITE.waLink}" target="_blank" rel="noopener">WhatsApp us</a></li>
           <li>${ICON.mail}<a href="${SITE.mailLink}">${SITE.email}</a></li>
-          <li>${ICON.pin}<span>Serving ${SITE.area}</span></li>
+          <li>${ICON.pin}<span>${SITE.address.line1}, ${SITE.address.line2},<br>${SITE.address.city}, ${SITE.address.postcode}</span></li>
           <li>${ICON.clock}<span>Mon–Sat, 8:00am–6:00pm</span></li>
         </ul>
       </div>
@@ -314,7 +322,14 @@ export function localBusinessSchema() {
     email: SITE.email,
     priceRange: '££–£££',
     areaServed: { '@type': 'AdministrativeArea', name: 'Greater London' },
-    address: { '@type': 'PostalAddress', addressRegion: 'Greater London', addressCountry: 'GB' },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
+      addressLocality: SITE.address.city,
+      addressRegion: 'Greater London',
+      postalCode: SITE.address.postcode,
+      addressCountry: SITE.address.country,
+    },
     sameAs: [SITE.facebook, SITE.instagram],
     openingHoursSpecification: [{
       '@type': 'OpeningHoursSpecification',

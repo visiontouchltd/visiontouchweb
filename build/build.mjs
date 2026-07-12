@@ -802,7 +802,7 @@ ${header('contact')}
         <a class="contact-tile reveal" href="${SITE.telLink}"><div class="icon-badge">${ICON.phone}</div><div><h4>Call us</h4><p>Tap to call</p></div></a>
         <a class="contact-tile reveal" data-d="1" href="${SITE.waLink}" target="_blank" rel="noopener"><div class="icon-badge">${ICON.whatsapp}</div><div><h4>WhatsApp</h4><p>Message us</p></div></a>
         <a class="contact-tile reveal" data-d="2" href="${SITE.mailLink}"><div class="icon-badge">${ICON.mail}</div><div><h4>Email</h4><p>${SITE.email}</p></div></a>
-        <div class="contact-tile reveal" data-d="3"><div class="icon-badge">${ICON.pin}</div><div><h4>Area served</h4><p>${SITE.area}</p></div></div>
+        <div class="contact-tile reveal" data-d="3"><div class="icon-badge">${ICON.pin}</div><div><h4>Visit / write to us</h4><p>${SITE.address.full}</p></div></div>
       </div>
       <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(1.5rem,4vw,3.5rem);align-items:start">
         <div class="reveal">
@@ -812,6 +812,11 @@ ${header('contact')}
         </div>
         <aside class="reveal">
           <div class="card" style="background:var(--charcoal);color:var(--on-dark)">
+            <h3 style="color:#fff">Our address</h3>
+            <ul class="footer-contact" style="margin-top:1rem">
+              <li>${ICON.pin}<span>${SITE.address.line1},<br>${SITE.address.line2}, ${SITE.address.city},<br>${SITE.address.postcode}</span></li>
+            </ul>
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:1.4rem 0">
             <h3 style="color:#fff">Opening hours</h3>
             <ul class="footer-contact" style="margin-top:1rem">
               <li>${ICON.clock}<span>Monday – Friday: 8:00am – 6:00pm</span></li>

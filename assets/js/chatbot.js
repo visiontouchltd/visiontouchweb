@@ -439,7 +439,8 @@
   }
 
   function replyContact() {
-    addBot('Here’s how to reach the team:\n- **WhatsApp** — fastest reply (tap the green button, or the chip below)\n- **Call** — use the Call Us buttons on the site (Mon–Sat)\n- **Email** — ' + EMAIL + '\n- **[Quote form](request-a-quote.html)** — free, no-obligation\n\n**Hours:** ' + K.company.hours + '.');
+    var addr = K.contact && K.contact.address ? '\n- **Address** — ' + K.contact.address : '';
+    addBot('Here’s how to reach the team:\n- **WhatsApp** — fastest reply (tap the green button, or the chip below)\n- **Call** — use the Call Us buttons on the site (Mon–Sat)\n- **Email** — ' + EMAIL + '\n- **[Quote form](request-a-quote.html)** — free, no-obligation' + addr + '\n\n**Hours:** ' + K.company.hours + '.');
     showChips(['WhatsApp us', 'Call us', 'Get a quote']);
   }
 

@@ -107,7 +107,7 @@
     },
     {
       "id": "contact",
-      "keywords": ["email", "whatsapp", "contact", "phone number", "number", "reach you", "get in touch", "opening hours", "hours", "open", "office"],
+      "keywords": ["email", "whatsapp", "contact", "phone number", "number", "reach you", "get in touch", "opening hours", "hours", "open", "office", "address", "your address", "where are you based", "office address", "visit you", "come to your", "premises", "shop", "showroom"],
       "reply": "",
       "suggest": ["Get a quote", "Speak to a human"]
     },
